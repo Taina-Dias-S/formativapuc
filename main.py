@@ -18,6 +18,6 @@ async def funcaoteste():
 async def root():
     return {"message": "Olá, mundo!"}
 
-@app.get("/teste33")
+@app.get("/teste3")
 async def root():
     return {"message": "Bonjour le monde!"}
