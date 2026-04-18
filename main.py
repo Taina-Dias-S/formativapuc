@@ -13,3 +13,7 @@ async def funcaoteste():
     return {"teste": True, "num_aleatorio": random.randint(0,50)}
 
 
+
+@app.get("/teste11")
+async def root():
+    return {"message": "Olá, mundo!"}
