@@ -8,7 +8,7 @@ app = FastAPI()
 async def root():
     return {"message": "Hello World"}
 
-@app.get("/testee")
+@app.get("/testando")
 async def funcaoteste():
     return {"teste": True, "num_aleatorio": random.randint(0,50)}
 
