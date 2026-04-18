@@ -17,3 +17,7 @@ async def funcaoteste():
 @app.get("/teste11")
 async def root():
     return {"message": "Olá, mundo!"}
+
+@app.get("/teste33")
+async def root():
+    return {"message": "Bonjour le monde!"}
