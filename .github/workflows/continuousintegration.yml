@@ -27,3 +27,15 @@ jobs:
 
       - name: Test import
         run: python -c "import main; print('OK')"
+
+
+
+  discord:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Discord Webhook
+        uses: johnnyhuy/actions-discord-git-webhook@main
+        with:
+          webhook_url: ${{ secrets.DISCORD_HOOK }}
