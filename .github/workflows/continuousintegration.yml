@@ -37,7 +37,7 @@ jobs:
     steps:
       - uses: sarisia/actions-status-discord@v1
         with:
-          webhook: ${{ secrets.DISCORD_HOOK }}
+          webhook: ${{ secrets.discord_hook }}
           status: ${{ needs.build.result }}
           title: "CI - Pull Request"
           description: "Repositório: ${{ github.repository }}"
