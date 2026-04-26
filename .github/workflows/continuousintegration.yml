@@ -39,5 +39,7 @@ jobs:
         with:
           webhook: ${{ secrets.discord_hook }}
           status: ${{ needs.build.result }}
-          title: "CI - Pull Request"
+          content: "🚀"
+          title: "DEU CERTO!"
           description: "Repositório: ${{ github.repository }}"
+
