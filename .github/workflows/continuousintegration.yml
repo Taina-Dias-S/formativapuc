@@ -32,12 +32,11 @@ jobs:
 
   discord:
     runs-on: ubuntu-latest
+    needs: build
     steps:
-      - uses: actions/checkout@v4
-
       - name: Run Discord Webhook
-        uses: Sniddl/discord-commits@v1.6
+        uses: Sniddl/discord-commits@v1.8
         with:
-          webhook_url: ${{ secrets.DISCORD_HOOK }}
+          webhook: ${{ secrets.DISCORD_HOOK }}
           template: "avatar-with-link"
           include-extras: true
