@@ -5,12 +5,17 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from unittest.mock import patch
 
+
+
 def teste_root():
-    assert root() == {"message": "Hello World"}
+    result = root()
+    yield result
+    assert result == {"message": "Hello World"}
 
 def teste_funcaoteste():
     with patch('random.randint', return_value=1233):
-       result = funcaoteste()
+        result = funcaoteste()
+    yield result
     assert result == {"teste": True, "num_aleatorio": 1233}
 
 
@@ -24,23 +29,28 @@ def funcaoteste():
 
 def test_create_estudante():
     estudante_teste = Estudante(name="marco", curso="curso 1", ativo=False)
-    assert estudante_teste == create_estudante()
+    result = create_estudante(estudante_teste)
+    yield result
+    assert estudante_teste == result
 
 
 def test_update_estudantes_negativo():
-    assert not update_estudantes(-5)
+    result = update_estudantes(-5)
+    yield result
+    assert not result
 
 def test_update_estudantes_positivo():
-        assert update_estudantes(10)
-
+    result = update_estudantes(10)
+    yield result
+    assert result
 
 def teste_delete_estudante_negativo():
-    assert not delete_estudantes(-5)
+    result = delete_estudantes(-5)
+    yield result
+    assert not result
 
 def teste_delete_estudante_positivo():
-    assert  delete_estudantes(10)
+    result = delete_estudantes(10)
+    yield result
+    assert result
 
-class Estudante(BaseModel):
-    name: str
-    curso: str
-    ativo: bool
