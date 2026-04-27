@@ -4,53 +4,57 @@ from src.main import *
 from fastapi import FastAPI
 from pydantic import BaseModel
 from unittest.mock import patch
+import pytest
 
 
 
-def teste_root():
-    result = root()
-    yield result
+@pytest.mark.asyncio
+async def teste_root():
+    result = await root()
     assert result == {"message": "Hello World"}
 
-def teste_funcaoteste():
+
+@pytest.mark.asyncio
+async def teste_funcaoteste():
     with patch('random.randint', return_value=1233):
-        result = funcaoteste()
-    yield result
+        result = await funcaoteste()
+
     assert result == {"teste": True, "num_aleatorio": 1233}
 
 
-
-def funcaoteste():
+@pytest.mark.asyncio
+async def funcaoteste():
     return {"teste": True, "num_aleatorio": random.randint(0,50)}
 
 
 
 
-
-def test_create_estudante():
+@pytest.mark.asyncio
+async def test_create_estudante():
     estudante_teste = Estudante(name="marco", curso="curso 1", ativo=False)
-    result = create_estudante(estudante_teste)
-    yield result
+    result = await create_estudante(estudante_teste)
+
     assert estudante_teste == result
 
+@pytest.mark.asyncio
+async def test_update_estudantes_negativo():
+    result = await update_estudantes(-5)
 
-def test_update_estudantes_negativo():
-    result = update_estudantes(-5)
-    yield result
     assert not result
 
-def test_update_estudantes_positivo():
-    result = update_estudantes(10)
-    yield result
+@pytest.mark.asyncio
+async def test_update_estudantes_positivo():
+    result = await update_estudantes(10)
+
     assert result
+@pytest.mark.asyncio
+async def teste_delete_estudante_negativo():
+    result = await delete_estudantes(-5)
 
-def teste_delete_estudante_negativo():
-    result = delete_estudantes(-5)
-    yield result
     assert not result
+@pytest.mark.asyncio
+async def teste_delete_estudante_positivo():
+    result = await delete_estudantes(10)
 
-def teste_delete_estudante_positivo():
-    result = delete_estudantes(10)
-    yield result
     assert result
 
