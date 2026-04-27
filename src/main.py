@@ -21,13 +21,13 @@ async def funcaoteste():
     return {"teste": True, "num_aleatorio": random.randint(0, 50)}
 
 
-def create_estudante():
+async def create_estudante():
     return Estudante(name="marco", curso="curso 1", ativo=False)
 
 
-def update_estudantes(id_estudante):
+async def update_estudantes(id_estudante):
     return id_estudante > 0
 
 
-def delete_estudantes(id_estudante):
+async def delete_estudantes(id_estudante):
     return id_estudante > 0
